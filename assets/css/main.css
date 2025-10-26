@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for Kenyan flag colors and glassmorphism */
+:root {
+  --accent-red: #BE1622;
+  --accent-green: #009A44;
+  --accent-black: #000000;
+  --accent-white: #FFFFFF;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --dark-base: #0B0B0D;
+  --dark-surface: #1A1A1C;
+  --dark-elevated: #2A2A2C;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply bg-dark-base text-white;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Glass morphism utility classes */
+@layer components {
+  .glass {
+    @apply backdrop-blur-xl bg-glass-bg border border-glass-border;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+  
+  .glass-card {
+    @apply glass rounded-glass shadow-glass;
+  }
+  
+  .glass-card-lg {
+    @apply glass rounded-glass-lg shadow-glass-lg;
+  }
+  
+  .message-bubble {
+    @apply rounded-bubble px-4 py-3 max-w-bubble shadow-bubble;
+    transition: all 160ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .message-bubble-left {
+    @apply message-bubble bg-bubble-left text-bubble-text;
+  }
+  
+  .message-bubble-right {
+    @apply message-bubble bg-bubble-right text-bubble-text;
+  }
+  
+  .cta-button {
+    @apply px-6 py-3 rounded-full font-medium transition-all duration-300;
+    transition: all 160ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .cta-button-primary {
+    @apply cta-button bg-accent-green text-accent-white hover:bg-opacity-90;
+  }
+  
+  .cta-button-ghost {
+    @apply cta-button glass text-accent-white hover:bg-glass-border;
+  }
+  
+  .avatar {
+    @apply rounded-full bg-accent-red text-accent-white flex items-center justify-center;
+    width: 40px;
+    height: 40px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  
+  .avatar-lg {
+    @apply avatar;
+    width: 60px;
+    height: 60px;
+    font-size: 1.25rem;
+  }
+  
+  .container-center {
+    @apply max-w-container mx-auto px-4;
+  }
+  
+  .typing-indicator {
+    @apply flex space-x-1;
+  }
+  
+  .typing-dot {
+    @apply w-2 h-2 bg-accent-white rounded-full animate-typing;
+  }
+  
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+}
+
+/* Focus styles for accessibility */
+@layer utilities {
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent-green focus:ring-offset-2 focus:ring-offset-dark-base;
+  }
+  
+  .focus-ring-inset {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent-green focus:ring-inset;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-surface;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-accent-red rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-opacity-80;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid var(--accent-white);
+  }
+  
+  .message-bubble-left {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid var(--accent-white);
+  }
+}
+
+/* Print styles */
+@media print {
+  .glass {
+    background: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  .message-bubble-right {
+    background: #f0f0f0 !important;
+    color: black !important;
+  }
+}
