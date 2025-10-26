@@ -35,9 +35,7 @@ export const useChatStore = defineStore('chat', () => {
 
   // Getters
   const currentMessages = computed(() => 
-    messages.value.filter(msg => 
-      currentChatId.value ? true : true // For now, show all messages
-    )
+    messages.value // For now, show all messages
   )
 
   const unreadCount = computed(() => 
@@ -201,3 +199,4 @@ export const useChatStore = defineStore('chat', () => {
     simulateTyping
   }
 })
+
