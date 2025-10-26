@@ -25,7 +25,9 @@
     "lighthouse:ci": "lhci autorun"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.11.2",
     "nuxt": "^4.2.0",
+    "nuxt-seo-utils": "^7.0.18",
     "vue": "^3.5.22",
     "vue-router": "^4.6.3"
   },
